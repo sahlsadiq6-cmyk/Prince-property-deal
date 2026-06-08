@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Prince Property</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-crown"></i> Admin Panel</h2>
+        </div>
+        
+        <nav class="admin-nav">
+            <ul>
+                <li><a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a></li>
+                <li><a href="#users" class="nav-item" data-section="users">
+                    <i class="fas fa-users"></i> Users
+                </a></li>
+                <li><a href="#properties" class="nav-item" data-section="properties">
+                    <i class="fas fa-home"></i> Properties
+                </a></li>
+                <li><a href="#inquiries" class="nav-item" data-section="inquiries">
+                    <i class="fas fa-envelope"></i> Inquiries
+                </a></li>
+                <li><a href="#contacts" class="nav-item" data-section="contacts">
+                    <i class="fas fa-address-book"></i> Contacts
+                </a></li>
+                <li><a href="#analytics" class="nav-item" data-section="analytics">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a></li>
+                <li><a href="#blogs" class="nav-item" data-section="blogs">
+                    <i class="fas fa-newspaper"></i> Blog Posts
+                </a></li>
+                <li><a href="#faq" class="nav-item" data-section="faq">
+                    <i class="fas fa-question-circle"></i> FAQ
+                </a></li>
+                <li><a href="#settings" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Top Bar -->
+        <div class="admin-topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Admin Dashboard</h1>
+            </div>
+            <div class="topbar-right">
+                <button class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="admin-menu">
+                    <img src="/assets/images/avatar.jpg" alt="Admin" class="avatar">
+                    <button class="btn-logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="admin-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon users">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalUsers">0</h3>
+                            <p>Total Users</p>
+                            <span class="stat-change">+12% this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon properties">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalProperties">0</h3>
+                            <p>Active Properties</p>
+                            <span class="stat-change">+8% this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon contacts">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalContacts">0</h3>
+                            <p>Contact Submissions</p>
+                            <span class="stat-change">+25% this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon inquiries">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="pendingInquiries">0</h3>
+                            <p>Pending Inquiries</p>
+                            <span class="stat-change">Needs attention</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-widget">
+                        <h2>Monthly Activity</h2>
+                        <canvas id="activityChart"></canvas>
+                    </div>
+                    <div class="chart-widget">
+                        <h2>Users vs Properties</h2>
+                        <canvas id="usersVsPropertiesChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users-section" class="admin-section">
+                <div class="section-header">
+                    <h1>Users Management</h1>
+                    <input type="text" placeholder="Search users..." class="search-box">
+                </div>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Joined</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Users will be loaded here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Properties Section -->
+            <section id="properties-section" class="admin-section">
+                <div class="section-header">
+                    <h1>Properties Management</h1>
+                    <input type="text" placeholder="Search properties..." class="search-box">
+                </div>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Owner</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Views</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="propertiesTableBody">
+                        <!-- Properties will be loaded here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Contacts Section -->
+            <section id="contacts-section" class="admin-section">
+                <div class="section-header">
+                    <h1>Contact Submissions</h1>
+                    <input type="text" placeholder="Search contacts..." class="search-box">
+                </div>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contactsTableBody">
+                        <!-- Contacts will be loaded here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics-section" class="admin-section">
+                <h1>Analytics & Reports</h1>
+                
+                <div class="analytics-filters">
+                    <select>
+                        <option>Last 7 days</option>
+                        <option>Last 30 days</option>
+                        <option>Last 3 months</option>
+                        <option>Last year</option>
+                    </select>
+                </div>
+
+                <div class="analytics-charts">
+                    <div class="chart-widget">
+                        <h2>Traffic Over Time</h2>
+                        <canvas id="trafficChart"></canvas>
+                    </div>
+                    <div class="chart-widget">
+                        <h2>Top Cities</h2>
+                        <canvas id="citiesChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="admin-section">
+                <h1>System Settings</h1>
+                
+                <form class="settings-form">
+                    <div class="form-section">
+                        <h2>General Settings</h2>
+                        <div class="form-group">
+                            <label for="siteName">Site Name</label>
+                            <input type="text" id="siteName" value="Prince Property">
+                        </div>
+                        <div class="form-group">
+                            <label for="siteEmail">Support Email</label>
+                            <input type="email" id="siteEmail" value="support@princeproperties.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="sitePhone">Support Phone</label>
+                            <input type="tel" id="sitePhone" value="+1 (555) 123-4567">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Save Settings</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Prince Property</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar Navigation -->
+    <aside class="dashboard-sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-home"></i> Prince Property</h2>
+            <button class="sidebar-close"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a></li>
+                <li><a href="#profile" class="nav-item" data-section="profile">
+                    <i class="fas fa-user"></i> My Profile
+                </a></li>
+                <li><a href="#properties" class="nav-item" data-section="properties">
+                    <i class="fas fa-list"></i> My Properties
+                </a></li>
+                <li><a href="#favorites" class="nav-item" data-section="favorites">
+                    <i class="fas fa-heart"></i> Saved Properties
+                </a></li>
+                <li><a href="#messages" class="nav-item" data-section="messages">
+                    <i class="fas fa-envelope"></i> Messages
+                </a></li>
+                <li><a href="#notifications" class="nav-item" data-section="notifications">
+                    <i class="fas fa-bell"></i> Notifications
+                </a></li>
+                <li><a href="#settings" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a></li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <button class="btn-logout" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Top Bar -->
+        <div class="dashboard-topbar">
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="topbar-search">
+                <input type="text" placeholder="Search...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="topbar-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-menu">
+                    <img src="/assets/images/avatar.jpg" alt="User" class="avatar">
+                    <span class="user-name">John Doe</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <h1>Dashboard</h1>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon properties">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>12</h3>
+                            <p>My Properties</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon views">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,234</h3>
+                            <p>Total Views</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon inquiries">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>5</h3>
+                            <p>New Inquiries</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon messages">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>3</h3>
+                            <p>Unread Messages</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-row">
+                    <div class="dashboard-widget">
+                        <h2>Recent Activities</h2>
+                        <ul class="activity-list">
+                            <li>
+                                <span class="activity-type"><i class="fas fa-plus-circle"></i> Added</span>
+                                <span class="activity-text">New property: Luxury Apartment</span>
+                                <span class="activity-time">2 hours ago</span>
+                            </li>
+                            <li>
+                                <span class="activity-type"><i class="fas fa-eye"></i> Viewed</span>
+                                <span class="activity-text">New inquiry for Downtown House</span>
+                                <span class="activity-time">4 hours ago</span>
+                            </li>
+                            <li>
+                                <span class="activity-type"><i class="fas fa-envelope"></i> Message</span>
+                                <span class="activity-text">From: Sarah Johnson</span>
+                                <span class="activity-time">1 day ago</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-widget">
+                        <h2>Quick Actions</h2>
+                        <button class="btn-action">
+                            <i class="fas fa-plus"></i> Add New Property
+                        </button>
+                        <button class="btn-action">
+                            <i class="fas fa-pencil"></i> Edit Profile
+                        </button>
+                        <button class="btn-action">
+                            <i class="fas fa-image"></i> Upload Photos
+                        </button>
+                        <button class="btn-action">
+                            <i class="fas fa-star"></i> Upgrade Plan
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile-section" class="content-section">
+                <h1>My Profile</h1>
+                <form class="profile-form" id="profileForm">
+                    <div class="profile-header">
+                        <div class="profile-picture">
+                            <img src="/assets/images/avatar.jpg" alt="Profile">
+                            <button type="button" class="btn-change-photo">Change Photo</button>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Personal Information</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" placeholder="Doe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" placeholder="Tell us about yourself" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </form>
+            </section>
+
+            <!-- Properties Section -->
+            <section id="properties-section" class="content-section">
+                <div class="section-header">
+                    <h1>My Properties</h1>
+                    <button class="btn-primary" onclick="redirectTo('add-property.html')">
+                        <i class="fas fa-plus"></i> Add New Property
+                    </button>
+                </div>
+
+                <div class="properties-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Views</th>
+                                <th>Inquiries</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="propertiesTableBody">
+                            <!-- Properties will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messages-section" class="content-section">
+                <h1>Messages</h1>
+                <div class="messages-container">
+                    <div class="messages-list">
+                        <div class="message-item unread">
+                            <img src="/assets/images/avatar.jpg" alt="User">
+                            <div class="message-content">
+                                <h4>Sarah Johnson</h4>
+                                <p>Hi, I'm interested in the downtown property...</p>
+                                <span class="message-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <!-- More messages would go here -->
+                    </div>
+                    <div class="message-detail">
+                        <div class="message-header">
+                            <h2>Sarah Johnson</h2>
+                            <p>Online</p>
+                        </div>
+                        <div class="message-body">
+                            <div class="message received">
+                                <p>Hi, I'm interested in the downtown property. Can we schedule a viewing?</p>
+                                <span class="timestamp">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="message-input">
+                            <textarea placeholder="Type your message..."></textarea>
+                            <button><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="content-section">
+                <h1>Settings</h1>
+                
+                <div class="settings-section">
+                    <h2>Privacy & Security</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Change Password</h3>
+                            <p>Update your password regularly to keep your account secure</p>
+                        </div>
+                        <button class="btn-secondary" onclick="changePassword()">Change</button>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h2>Notifications</h2>
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="emailNotif" checked>
+                        <label for="emailNotif">Email Notifications</label>
+                    </div>
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="smsNotif" checked>
+                        <label for="smsNotif">SMS Notifications</label>
+                    </div>
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="pushNotif">
+                        <label for="pushNotif">Push Notifications</label>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h2>Account</h2>
+                    <div class="setting-item danger">
+                        <div class="setting-info">
+                            <h3>Delete Account</h3>
+                            <p>Permanently delete your account and all associated data</p>
+                        </div>
+                        <button class="btn-danger" onclick="deleteAccount()">Delete</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>
